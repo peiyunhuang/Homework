@@ -1,0 +1,54 @@
+Sub Totalstock_vol()
+    
+    Dim Tickername As String
+    
+    Dim Totalstock_vol As Double
+        Totalstock_vol = 0
+    
+    Dim TickerClosing As Double
+        TickerClosing = 0
+    
+    Dim TickerOpening As Double
+        TickerOpening = 0
+        
+    Dim Summary_Table_Row As Double
+        Summary_Table_Row = 2
+        
+    Dim Yearly_change As Double
+        Yearly_change = 0
+    Dim Percentage_change As Double
+        Percentage_change = 0
+    
+        For i = 2 To 760192
+            
+            If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+               
+               Tickername = Cells(i, 1).Value
+               TickerClosing = Cells(i, 6).Value
+               TickerOpening = Cells(i, 3).Value
+    
+               Totalstock_vol = Totalstock_vol + Cells(i, 12).Value
+               
+               Yearly_change = TickerClosing - TickerOpening
+               Yearly_change = Cells(i, 10).Value
+               Percentage_change = ((TickerClosing - TickerOpening) / TickerOpening) * 100
+               Percentage_change = Cells(i, 11).Value
+               
+               Range("i" & Summary_Table_Row).Value = Tickername
+               
+               Range("j" & Summary_Table_Row).Value = Yearly_change
+               
+               Range("k" & Summary_Table_Row).Value = Precentage_change
+               
+               Range("l" & Summary_Table_Row).Value = Totalstock_vol
+               
+               Summary_Table_Row = Summary_Table_Row + 1
+               Totalstock_vol = 0
+            Else
+                Totalstock_vol = Totalstock_vol + Cells(i, 10).Value
+            
+        End If
+    Next i
+
+            
+End Sub
