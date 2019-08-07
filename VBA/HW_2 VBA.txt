@@ -1,0 +1,28 @@
+Sub Totalstock_vol()
+    
+    Dim Tickername As String
+    
+    Dim Totalstock_vol As Double
+        Totalstock_vol = 0
+        
+    Dim Summary_Table_Row As Double
+        Summary_Table_Row = 2
+        
+        For i = 2 To 760192
+            
+            If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+               
+               Tickername = Cells(i, 1).Value
+               Totalstock_vol = Totalstock_vol + Cells(i, 7)
+               Range("i" & Summary_Table_Row).Value = Tickername
+               Range("j" & Summary_Table_Row).Value = Totalstock_vol
+               Summary_Table_Row = Summary_Table_Row + 1
+               Totalstock_vol = 0
+            Else
+                Totalstock_vol = Totalstock_vol + Cells(i, 7).Value
+            
+        End If
+    Next i
+
+            
+End Sub
